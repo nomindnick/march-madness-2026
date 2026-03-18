@@ -1,0 +1,91 @@
+{
+  "tournament": "NCAA March Madness 2026",
+  "year": 2026,
+
+  "final_four": {
+    "semifinal_1": ["East", "South"],
+    "semifinal_2": ["West", "Midwest"]
+  },
+
+  "first_four": [
+    {
+      "id": "FF1",
+      "seed": 16,
+      "region": "Midwest",
+      "slot": 0,
+      "teams": ["UMBC", "Howard"]
+    },
+    {
+      "id": "FF2",
+      "seed": 11,
+      "region": "West",
+      "slot": 4,
+      "teams": ["Texas", "NC State"]
+    },
+    {
+      "id": "FF3",
+      "seed": 16,
+      "region": "South",
+      "slot": 0,
+      "teams": ["Prairie View A&M", "Lehigh"]
+    },
+    {
+      "id": "FF4",
+      "seed": 11,
+      "region": "Midwest",
+      "slot": 4,
+      "teams": ["Miami (OH)", "SMU"]
+    }
+  ],
+
+  "regions": {
+    "East": {
+      "matchups": [
+        {"slot": 0, "top": {"team": "Duke",           "seed": 1},  "bottom": {"team": "Siena",              "seed": 16}},
+        {"slot": 1, "top": {"team": "Ohio State",      "seed": 8},  "bottom": {"team": "TCU",                "seed": 9}},
+        {"slot": 2, "top": {"team": "St. John's",      "seed": 5},  "bottom": {"team": "Northern Iowa",      "seed": 12}},
+        {"slot": 3, "top": {"team": "Kansas",           "seed": 4},  "bottom": {"team": "California Baptist", "seed": 13}},
+        {"slot": 4, "top": {"team": "Louisville",       "seed": 6},  "bottom": {"team": "South Florida",      "seed": 11}},
+        {"slot": 5, "top": {"team": "Michigan State",   "seed": 3},  "bottom": {"team": "North Dakota State", "seed": 14}},
+        {"slot": 6, "top": {"team": "UCLA",             "seed": 7},  "bottom": {"team": "UCF",                "seed": 10}},
+        {"slot": 7, "top": {"team": "UConn",            "seed": 2},  "bottom": {"team": "Furman",             "seed": 15}}
+      ]
+    },
+    "West": {
+      "matchups": [
+        {"slot": 0, "top": {"team": "Arizona",    "seed": 1},  "bottom": {"team": "LIU",            "seed": 16}},
+        {"slot": 1, "top": {"team": "Villanova",  "seed": 8},  "bottom": {"team": "Utah State",     "seed": 9}},
+        {"slot": 2, "top": {"team": "Wisconsin",  "seed": 5},  "bottom": {"team": "High Point",     "seed": 12}},
+        {"slot": 3, "top": {"team": "Arkansas",   "seed": 4},  "bottom": {"team": "Hawaii",         "seed": 13}},
+        {"slot": 4, "top": {"team": "BYU",        "seed": 6},  "bottom": {"team": null, "seed": 11, "first_four_id": "FF2"}},
+        {"slot": 5, "top": {"team": "Gonzaga",    "seed": 3},  "bottom": {"team": "Kennesaw State", "seed": 14}},
+        {"slot": 6, "top": {"team": "Miami (FL)", "seed": 7},  "bottom": {"team": "Missouri",       "seed": 10}},
+        {"slot": 7, "top": {"team": "Purdue",     "seed": 2},  "bottom": {"team": "Queens (NC)",    "seed": 15}}
+      ]
+    },
+    "Midwest": {
+      "matchups": [
+        {"slot": 0, "top": {"team": "Michigan",   "seed": 1},  "bottom": {"team": null, "seed": 16, "first_four_id": "FF1"}},
+        {"slot": 1, "top": {"team": "Georgia",    "seed": 8},  "bottom": {"team": "Saint Louis",      "seed": 9}},
+        {"slot": 2, "top": {"team": "Texas Tech", "seed": 5},  "bottom": {"team": "Akron",            "seed": 12}},
+        {"slot": 3, "top": {"team": "Alabama",    "seed": 4},  "bottom": {"team": "Hofstra",          "seed": 13}},
+        {"slot": 4, "top": {"team": "Tennessee",  "seed": 6},  "bottom": {"team": null, "seed": 11, "first_four_id": "FF4"}},
+        {"slot": 5, "top": {"team": "Virginia",   "seed": 3},  "bottom": {"team": "Wright State",     "seed": 14}},
+        {"slot": 6, "top": {"team": "Kentucky",   "seed": 7},  "bottom": {"team": "Santa Clara",      "seed": 10}},
+        {"slot": 7, "top": {"team": "Iowa State", "seed": 2},  "bottom": {"team": "Tennessee State",  "seed": 15}}
+      ]
+    },
+    "South": {
+      "matchups": [
+        {"slot": 0, "top": {"team": "Florida",        "seed": 1},  "bottom": {"team": null, "seed": 16, "first_four_id": "FF3"}},
+        {"slot": 1, "top": {"team": "Clemson",         "seed": 8},  "bottom": {"team": "Iowa",             "seed": 9}},
+        {"slot": 2, "top": {"team": "Vanderbilt",      "seed": 5},  "bottom": {"team": "McNeese",          "seed": 12}},
+        {"slot": 3, "top": {"team": "Nebraska",        "seed": 4},  "bottom": {"team": "Troy",             "seed": 13}},
+        {"slot": 4, "top": {"team": "North Carolina",  "seed": 6},  "bottom": {"team": "VCU",              "seed": 11}},
+        {"slot": 5, "top": {"team": "Illinois",        "seed": 3},  "bottom": {"team": "Idaho",            "seed": 14}},
+        {"slot": 6, "top": {"team": "Saint Mary's",    "seed": 7},  "bottom": {"team": "Texas A&M",        "seed": 10}},
+        {"slot": 7, "top": {"team": "Houston",         "seed": 2},  "bottom": {"team": "Penn",             "seed": 15}}
+      ]
+    }
+  }
+}

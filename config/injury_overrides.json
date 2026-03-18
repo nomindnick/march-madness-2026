@@ -1,0 +1,29 @@
+{
+  "overrides": {
+    "Michigan": {
+      "adj_em_delta": -3.0,
+      "note": "L.J. Cason torn ACL, key guard out"
+    },
+    "Alabama": {
+      "adj_em_delta": -4.0,
+      "note": "Aden Holloway suspended, top 3pt shooter"
+    },
+    "North Carolina": {
+      "adj_em_delta": -6.0,
+      "note": "Caleb Wilson broken thumb, best player out"
+    },
+    "BYU": {
+      "adj_em_delta": -3.5,
+      "note": "Richie Saunders ACL, went 4-6 since injury"
+    },
+    "Duke": {
+      "adj_em_delta": -2.0,
+      "note": "Caleb Foster broken foot, Ngongba foot soreness"
+    },
+    "Gonzaga": {
+      "adj_em_delta": -4.0,
+      "sweet_16_override": -1.0,
+      "note": "Braden Huff out opening weekend, possible Sweet 16 return"
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "portfolio": [
+    {
+      "bracket_number": 1,
+      "tier": "chalk",
+      "champion": "Duke",
+      "champion_seed": 1,
+      "champion_region": "East",
+      "path_value": 63,
+      "notes": "Chalk insurance. Duke is #1 overall seed but missing Caleb Foster (broken foot) and Ngongba (foot soreness). Build this bracket with aggressive high-seed upset picks elsewhere to separate from other Duke pickers."
+    },
+    {
+      "bracket_number": 2,
+      "tier": "chalk",
+      "champion": "Arizona",
+      "champion_seed": 1,
+      "champion_region": "West",
+      "path_value": 63,
+      "notes": "Healthy 1-seed with elite two-way efficiency (AdjO #5, AdjD #3). Strongest 1-seed by health status. Pair with aggressive high-seed Final Four picks from other regions."
+    },
+    {
+      "bracket_number": 3,
+      "tier": "value_core",
+      "champion": "Houston",
+      "champion_seed": 2,
+      "champion_region": "South",
+      "path_value": 126,
+      "notes": "Best 2-seed by championship odds (+1000). Elite defense (#5). Plays second weekend in Houston (home court). Path through South is favorable."
+    },
+    {
+      "bracket_number": 4,
+      "tier": "value_core",
+      "champion": "UConn",
+      "champion_seed": 2,
+      "champion_region": "East",
+      "path_value": 126,
+      "notes": "Strong program, tough East region. Would need to beat Duke (weakened). High risk but 2x multiplier makes it worthwhile."
+    },
+    {
+      "bracket_number": 5,
+      "tier": "value_core",
+      "champion": "Iowa State",
+      "champion_seed": 2,
+      "champion_region": "Midwest",
+      "path_value": 126,
+      "notes": "Midwest 1-seed Michigan lost Cason, 4-seed Alabama lost Holloway. Path has opened up dramatically. Iowa State is the primary beneficiary."
+    },
+    {
+      "bracket_number": 6,
+      "tier": "value_core",
+      "champion": "Gonzaga",
+      "champion_seed": 3,
+      "champion_region": "West",
+      "path_value": 189,
+      "notes": "Conditional value play. Huff OUT for opening weekend but 'jogging and shooting' per Mark Few. If Gonzaga reaches Sweet 16, Huff may return, making them dramatically better. 3x multiplier. West region path manageable."
+    },
+    {
+      "bracket_number": 7,
+      "tier": "contrarian",
+      "champion": "Illinois",
+      "champion_seed": 3,
+      "champion_region": "South",
+      "path_value": 189,
+      "notes": "Strong 3-seed at +1900 odds. South region has weaknesses. 3x multiplier. Would likely need to beat Houston in Elite 8 or Sweet 16."
+    },
+    {
+      "bracket_number": 8,
+      "tier": "contrarian",
+      "champion": "Kansas",
+      "champion_seed": 4,
+      "champion_region": "East",
+      "path_value": 252,
+      "notes": "4-seed with Darryn Peterson healthy. East region where Duke is weakened. 4x multiplier makes this extremely high-value if they break through. Historical pedigree."
+    },
+    {
+      "bracket_number": 9,
+      "tier": "contrarian",
+      "champion": "Purdue",
+      "champion_seed": 2,
+      "champion_region": "West",
+      "path_value": 126,
+      "notes": "Just won Big Ten Tournament, jumped from 3-seed to 2-seed. Hot team with momentum. West region diversification away from East overload."
+    },
+    {
+      "bracket_number": 10,
+      "tier": "swing",
+      "champion": "TBD",
+      "champion_seed": null,
+      "champion_region": "Midwest",
+      "path_value": null,
+      "notes": "Swing bracket targeting Midwest for regional balance. Candidate champions: Michigan (1, 63pts — vulnerable but still #1 defense), Virginia (3, 189pts — defense-first but deep), or Vanderbilt (5, 315pts — hot team, beat Florida in SEC tournament). Finalize after data collection and First Four results."
+    }
+  ],
+  "regional_distribution": {
+    "East": 3,
+    "West": 3,
+    "South": 2,
+    "Midwest": 2
+  },
+  "scoring_system": {
+    "formula": "base_points × seed",
+    "base_points_by_round": {
+      "1": 1,
+      "2": 2,
+      "3": 4,
+      "4": 8,
+      "5": 16,
+      "6": 32
+    }
+  }
+}
