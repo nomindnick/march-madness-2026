@@ -212,8 +212,28 @@ that is internally consistent and EV-optimized.
   in Rounds 1 and 2)
 - Different champion assignments produce meaningfully different brackets
 
-**Sprint Update:**
-> _[To be completed by Claude Code]_
+**Sprint Update (Completed 2026-03-18):**
+> - Implemented `src/bracket_builder.py` with `Bracket` dataclass, `build_bracket()` main entry
+>   point, `fill_region_ev()` for pure EV optimization, `fill_region_champion()` for champion
+>   path enforcement, `validate_bracket()`, and `print_bracket()`.
+> - First Four auto-resolution: reads known winners from bracket JSON (`"winner"` field),
+>   auto-picks remaining games by higher AdjEM. Accepts `first_four_winners` override dict.
+> - Algorithm: Champion wins every round in their region. All other games (including non-champion
+>   games within the champion's region) use `compare_ev()` for EV optimization.
+> - Final Four: champion beats paired region's E8 winner. Other semifinal uses `compare_ev(5)`.
+> - Deep copy of bracket structure used internally — safe to call `build_bracket()` multiple times.
+> - **Key finding:** x Seed scoring heavily favors upset picks in R2+. In non-champion regions,
+>   8/9-seeds routinely beat 1-seeds by EV (e.g., Utah State 9-seed EV=2.13 vs Arizona 1-seed
+>   EV=1.76 in R2, because 9×2=18 pts vs 1×2=2 pts). This is mathematically correct — the
+>   seed multiplier overwhelms the probability advantage for low-seed teams in later rounds.
+> - **Key finding:** R1 is mostly chalk (78% top-8 seeds picked) because in R1 the base points
+>   are only 1, so the seed multiplier advantage is smaller. From R2 onward, base points double
+>   each round, amplifying the seed multiplier effect.
+> - **Key finding:** Non-champion regions produce identical picks across all brackets (EV
+>   optimization is deterministic). Portfolio diversification (Sprint 4.1) will add correlation
+>   penalties to differentiate close-call picks across brackets.
+> - Validation: `validate_sprint2_2.py` passes all 6 tests (Houston champion path, Duke champion
+>   path + chalk check, internal consistency, bracket differentiation, game counts, Kansas 4-seed).
 
 ---
 
