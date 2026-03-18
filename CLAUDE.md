@@ -19,12 +19,12 @@ optimized for a **Points x Seed** scoring system. Targets a ~30-60 person office
 config/
   bracket_2026.json     — 68 teams, 4 regions, First Four, Final Four pairings
   portfolio_plan.json   — 10 champion assignments (2 chalk / 4 value / 3 contrarian / 1 swing)
-  injury_overrides.json — AdjEM deltas for injured/suspended players
+  injury_overrides.json — AdjEM deltas for 9 injured/suspended players
   team_ratings.json     — KenPom efficiency ratings (AdjO, AdjD, AdjEM, rank, conf)
 src/
   data_loader.py        — Team dataclass, load_teams() -> dict[str, Team], get_adj_em()
   win_probability.py    — P(A beats B) logistic model (K=0.1198, ~3%/pt)
-  ev_engine.py          — [Sprint 2.1] Expected value under x Seed scoring
+  ev_engine.py          — EV scoring: score_correct_pick, ev_of_pick, compare_ev, cumulative_ev, champion_path_ev
   bracket_builder.py    — [Sprint 2.2] Backwards-chaining bracket construction
   simulator.py          — [Sprint 2.3] Monte Carlo tournament simulation
   portfolio.py          — [Sprint 4.1] Diversification across 10 brackets
@@ -39,8 +39,10 @@ generate_brackets.py    — [Sprint 4.1] Main entry point
 - [x] Sprint 1.1 — Project scaffolding & bracket data (config files, directory structure)
 - [x] Sprint 1.2 — Team ratings & win probability engine
 - [x] Sprint 2.1 — EV scoring engine
+- [x] Sprint 3.1 — Team ratings data collection (injury updates, Vegas calibration, portfolio finalized)
 - [ ] Sprint 2.2 — Backwards-chaining bracket builder
 - [ ] Sprint 2.3 — Monte Carlo simulator
+- [ ] Sprint 3.2 — Expert bracket collection (optional, skip if time-constrained)
 - [ ] Sprint 4.1 — Portfolio generation & output
 - [ ] Sprint 4.2 — Review, adjust, submit
 
