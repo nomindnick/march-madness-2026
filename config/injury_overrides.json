@@ -2,28 +2,41 @@
   "overrides": {
     "Michigan": {
       "adj_em_delta": -3.0,
-      "note": "L.J. Cason torn ACL, key guard out"
+      "note": "L.J. Cason torn ACL (Feb 27), key guard out for season"
     },
     "Alabama": {
       "adj_em_delta": -4.0,
-      "note": "Aden Holloway suspended, top 3pt shooter"
+      "note": "Aden Holloway suspended indefinitely (felony arrest Mar 16), top 3pt shooter (16.8 PPG, 43.1% 3PT)"
     },
     "North Carolina": {
       "adj_em_delta": -6.0,
-      "note": "Caleb Wilson broken thumb, best player out"
+      "note": "Caleb Wilson broken thumb (Mar 5), best player out (19.8 PPG, 9.4 RPG). Vegas has UNC -2.5 vs VCU suggesting market prices injury at ~-3.5, but we believe impact is larger."
     },
     "BYU": {
       "adj_em_delta": -3.5,
-      "note": "Richie Saunders ACL, went 4-6 since injury"
+      "note": "Richie Saunders torn ACL (Feb 15), went 4-6 since injury. Dybantsa can carry but depth suffers."
     },
     "Duke": {
-      "adj_em_delta": -2.0,
-      "note": "Caleb Foster broken foot, Ngongba foot soreness"
+      "adj_em_delta": -1.0,
+      "note": "Caleb Foster broken foot (out). Ngongba PROBABLE for Thursday — Scheyer says 'very positive', took good step with medical staff. Override reduced from -2.0 to -1.0. Revert to -2.0 if Ngongba ruled out Thursday morning."
     },
     "Gonzaga": {
       "adj_em_delta": -4.0,
       "sweet_16_override": -1.0,
-      "note": "Braden Huff out opening weekend, possible Sweet 16 return"
+      "note": "Braden Huff dislocated kneecap (Jan 15), confirmed out opening weekend per Mark Few. Jogging and shooting — possible Sweet 16 return with full week off."
+    },
+    "Texas Tech": {
+      "adj_em_delta": -6.5,
+      "note": "JT Toppin torn ACL (Feb 17). Was averaging 21.8 PPG, 10.8 RPG on 54.8% — All-American caliber. Committee dropped them from projected 3-seed to 5-seed. Christian Anderson (groin) cleared to play."
+    },
+    "Louisville": {
+      "adj_em_delta": -4.0,
+      "note": "Mikel Brown Jr. questionable (lower back), missed last 4 games + entire ACC tournament. Projected lottery pick with 45-point game vs NC State. Monitor game-day status — reduce to -1.5 if he plays limited minutes."
+    },
+    "Clemson": {
+      "adj_em_delta": -2.5,
+      "note": "Carter Welling torn ACL (Mar 12 ACC Tournament). Second-leading scorer (10.2 PPG) and top rebounder (5.4 RPG). Very recent — KenPom hasn't fully adjusted."
     }
-  }
+  },
+  "_vegas_calibration_note": "As of Mar 18, our injury overrides are ~2-4 pts more aggressive than Vegas lines for UNC, Alabama, Gonzaga, and BYU. This may partially double-count since KenPom season-long ratings already reflect recent games without injured players. Duke's override aligns perfectly with Vegas after the -2.0 to -1.0 reduction. For x Seed scoring, being more aggressive on injury-affected games creates more upset picks, which is strategically desirable."
 }

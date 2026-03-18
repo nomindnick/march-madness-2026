@@ -54,12 +54,12 @@ for region_name, region in bracket["regions"].items():
             seeds_found.add(seed)
             if team is not None:
                 all_teams.add(team)
-            else:
-                ff_id = m[side].get("first_four_id")
-                if ff_id:
-                    first_four_ids_referenced.add(ff_id)
-                else:
-                    errors.append(f"{region_name} slot {m['slot']}: null team without first_four_id")
+            # Track first_four_id references whether team is resolved or not
+            ff_id = m[side].get("first_four_id")
+            if ff_id:
+                first_four_ids_referenced.add(ff_id)
+            elif team is None:
+                errors.append(f"{region_name} slot {m['slot']}: null team without first_four_id")
 
     expected_seeds = set(range(1, 17))
     if seeds_found != expected_seeds:

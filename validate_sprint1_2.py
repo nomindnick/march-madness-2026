@@ -40,8 +40,11 @@ injured_teams = {
     "Alabama": -4.0,
     "North Carolina": -6.0,
     "BYU": -3.5,
-    "Duke": -2.0,
+    "Duke": -1.0,
     "Gonzaga": -4.0,
+    "Texas Tech": -6.5,
+    "Louisville": -4.0,
+    "Clemson": -2.5,
 }
 
 for name, expected_delta in injured_teams.items():

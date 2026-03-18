@@ -84,11 +84,11 @@
     {
       "bracket_number": 10,
       "tier": "swing",
-      "champion": "TBD",
-      "champion_seed": null,
+      "champion": "Michigan",
+      "champion_seed": 1,
       "champion_region": "Midwest",
-      "path_value": null,
-      "notes": "Swing bracket targeting Midwest for regional balance. Candidate champions: Michigan (1, 63pts — vulnerable but still #1 defense), Virginia (3, 189pts — defense-first but deep), or Vanderbilt (5, 315pts — hot team, beat Florida in SEC tournament). Finalize after data collection and First Four results."
+      "path_value": 63,
+      "notes": "Michigan selected over Virginia (3, 189pts). EV: Michigan 12.6 (20% x 63) vs Virginia 2.5 (1.3% x 189). Vanderbilt was incorrectly listed as Midwest — it's in South. Michigan has #1 defense, +350 championship odds despite Cason injury. Virginia is most likely 3-seed to lose R1 per CBS. Differentiate this bracket with aggressive upsets in non-champion regions."
     }
   ],
   "regional_distribution": {

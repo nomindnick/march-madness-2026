@@ -38,7 +38,7 @@ generate_brackets.py    — [Sprint 4.1] Main entry point
 
 - [x] Sprint 1.1 — Project scaffolding & bracket data (config files, directory structure)
 - [x] Sprint 1.2 — Team ratings & win probability engine
-- [ ] Sprint 2.1 — EV scoring engine
+- [x] Sprint 2.1 — EV scoring engine
 - [ ] Sprint 2.2 — Backwards-chaining bracket builder
 - [ ] Sprint 2.3 — Monte Carlo simulator
 - [ ] Sprint 4.1 — Portfolio generation & output
@@ -97,6 +97,8 @@ python validate_sprint1_1.py   # Validate config file integrity
 python validate_sprint1_2.py   # Validate team ratings & win probability
 python -m src.data_loader      # Print all 68 teams sorted by AdjEM
 python -m src.win_probability  # Print East R1 matchups + calibration check
+python -m src.ev_engine        # Print all R1 matchups with EV analysis
+python validate_sprint2_1.py   # Validate EV engine functions
 ```
 
 ## Dependencies

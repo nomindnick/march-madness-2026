@@ -143,14 +143,14 @@ contribution of the project.
 the Points × Seed system.
 
 **Tasks:**
-- [ ] Implement `src/ev_engine.py`:
+- [x] Implement `src/ev_engine.py`:
   - `score_correct_pick(round, seed)` → base_points × seed
   - `ev_of_pick(round, team, opponent, win_prob)` → P(win) × score
   - `compare_ev(round, team_a, team_b, prob_a_wins)` → which pick has higher EV
   - Handle multi-round cumulative EV (advancing a team through R1 + R2)
-- [ ] Build a demonstration: for each first-round matchup, show both teams'
+- [x] Build a demonstration: for each first-round matchup, show both teams'
       single-round EV and flag where the "upset" pick has higher EV than chalk
-- [ ] Validate the key insight: in 5-vs-12 matchups, the 12-seed should
+- [x] Validate the key insight: in 5-vs-12 matchups, the 12-seed should
       frequently have higher Round 1 EV
 
 **Acceptance Criteria:**
@@ -158,8 +158,26 @@ the Points × Seed system.
 - The demo output matches the math from STRATEGY.md Section 6
 - Multi-round EV correctly compounds probabilities
 
-**Sprint Update:**
-> _[To be completed by Claude Code]_
+**Sprint Update (Completed 2026-03-18):**
+> - Implemented `src/ev_engine.py` with 6 functions: `score_correct_pick`, `ev_of_pick`,
+>   `compare_ev`, `cumulative_ev`, `champion_path_ev`, `print_ev_comparison`.
+> - Constants: `BASE_POINTS = {1:1, 2:2, 3:4, 4:8, 5:16, 6:32}`, sum = 63.
+> - `compare_ev` is the workhorse for bracket_builder — returns (best_team, ev_a, ev_b).
+> - `cumulative_ev` compounds win probabilities across rounds for multi-round path EV.
+> - Demo output shows all 4 regions' R1 matchups with EV analysis + seed-group summaries.
+> - **Key finding:** Only 4/28 R1 matchups have upset EV (underdog has higher expected value).
+>   With team-specific KenPom ratings (vs historical seed averages), most favorites' win
+>   probability is high enough to overcome the seed multiplier disadvantage. The exceptions
+>   are in 6v11, 7v10, and 8v9 matchups with close ratings (e.g., VCU over UNC at 6.26 vs 2.59,
+>   Iowa over Clemson at 5.36 vs 3.24).
+> - **Key finding:** 8v9 matchups do NOT universally favor the 9-seed as STRATEGY.md's
+>   base-rate analysis suggests. With team-specific ratings, only 2/4 favor the 9-seed.
+>   Strong 8-seeds (Ohio State, Georgia) overcome the 1-point multiplier gap.
+> - **Key finding:** No 5v12 matchup has upset EV this year — the 5-seeds are all strong
+>   enough that their ~85% win probability overcomes the 12/5 multiplier ratio. This differs
+>   from historical base rates (35.7% upset rate would yield upset EV).
+> - Validation: `validate_sprint2_1.py` passes all checks (score_correct_pick, ev_of_pick,
+>   compare_ev, cumulative_ev, champion_path_ev, constants, upset EV count).
 
 ---
 
@@ -246,8 +264,8 @@ scrape (via Playwright) will happen as the first task of Sprint 1.2, producing
 manual follow-up work.
 
 **Tasks:**
-- [ ] Verify the Playwright-scraped KenPom data looks correct for top teams
-- [ ] Update injury_overrides.json with any new developments (First Four
+- [x] Verify the Playwright-scraped KenPom data looks correct for top teams
+- [x] Update injury_overrides.json with any new developments (First Four
       results, last-minute injury news)
 
 **Acceptance Criteria:**
@@ -255,8 +273,32 @@ manual follow-up work.
 - Top 10 teams' ratings align with known KenPom rankings (Duke #1, Michigan #2,
   Arizona #3, etc.)
 
-**Sprint Update:**
-> _[To be completed]_
+**Sprint Update (Completed 2026-03-18):**
+> - **BartTorvik cross-reference:** Attempted but barttorvik.com has browser
+>   verification that blocked both Playwright and WebFetch. KenPom data validated
+>   indirectly via Vegas lines comparison — non-injury games show strong alignment
+>   between our AdjEM-derived spreads and Vegas (within 1-2 points).
+> - **First Four results (2 of 4):** Howard beat UMBC 86-83 (FF1), Texas beat
+>   NC State 68-66 (FF2). FF3 (Prairie View A&M vs Lehigh) and FF4 (Miami OH vs
+>   SMU) scheduled tonight — update bracket_2026.json when results come in.
+> - **3 new injury overrides added:**
+>   - Texas Tech: -6.5 (JT Toppin torn ACL Feb 17, 21.8 PPG — dropped from 3-seed to 5-seed)
+>   - Louisville: -4.0 (Mikel Brown Jr. questionable, potential lottery pick, missed ACC tourney)
+>   - Clemson: -2.5 (Carter Welling torn ACL Mar 12, second-leading scorer)
+> - **Duke override reduced:** -2.0 → -1.0 (Ngongba probable for Thursday per Scheyer).
+>   Revert to -2.0 if Ngongba ruled out Thursday morning.
+> - **Vegas calibration finding:** Our injury overrides are ~2-4 pts more aggressive
+>   than Vegas for UNC (-6.0 vs ~-3.5 implied), Alabama (-4.0 vs ~-2.5), Gonzaga
+>   (-4.0 vs ~-3.0), BYU (-3.5 vs ~-2.0). Duke's -1.0 aligns perfectly. May
+>   partially double-count since KenPom already reflects recent games without
+>   injured players. For x Seed scoring, more aggressive overrides = more upset
+>   picks, which is strategically desirable.
+> - **Swing bracket #10 finalized:** Michigan (1-seed, EV 12.6) over Virginia
+>   (3-seed, EV 2.5). Vanderbilt was incorrectly listed as Midwest candidate
+>   (it's in South). portfolio_plan.json updated.
+> - **Championship futures for calibration:** Duke ~22%, Michigan ~20%, Arizona ~19%,
+>   Florida ~12%, Houston ~9%, UConn ~5.6%, Illinois/Iowa State ~4-5%.
+> - All validations pass (sprint1_1, sprint1_2).
 
 ---
 

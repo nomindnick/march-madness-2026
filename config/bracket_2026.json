@@ -13,14 +13,18 @@
       "seed": 16,
       "region": "Midwest",
       "slot": 0,
-      "teams": ["UMBC", "Howard"]
+      "teams": ["UMBC", "Howard"],
+      "winner": "Howard",
+      "score": "Howard 86, UMBC 83"
     },
     {
       "id": "FF2",
       "seed": 11,
       "region": "West",
       "slot": 4,
-      "teams": ["Texas", "NC State"]
+      "teams": ["Texas", "NC State"],
+      "winner": "Texas",
+      "score": "Texas 68, NC State 66"
     },
     {
       "id": "FF3",
@@ -57,7 +61,7 @@
         {"slot": 1, "top": {"team": "Villanova",  "seed": 8},  "bottom": {"team": "Utah State",     "seed": 9}},
         {"slot": 2, "top": {"team": "Wisconsin",  "seed": 5},  "bottom": {"team": "High Point",     "seed": 12}},
         {"slot": 3, "top": {"team": "Arkansas",   "seed": 4},  "bottom": {"team": "Hawaii",         "seed": 13}},
-        {"slot": 4, "top": {"team": "BYU",        "seed": 6},  "bottom": {"team": null, "seed": 11, "first_four_id": "FF2"}},
+        {"slot": 4, "top": {"team": "BYU",        "seed": 6},  "bottom": {"team": "Texas", "seed": 11, "first_four_id": "FF2"}},
         {"slot": 5, "top": {"team": "Gonzaga",    "seed": 3},  "bottom": {"team": "Kennesaw State", "seed": 14}},
         {"slot": 6, "top": {"team": "Miami (FL)", "seed": 7},  "bottom": {"team": "Missouri",       "seed": 10}},
         {"slot": 7, "top": {"team": "Purdue",     "seed": 2},  "bottom": {"team": "Queens (NC)",    "seed": 15}}
@@ -65,7 +69,7 @@
     },
     "Midwest": {
       "matchups": [
-        {"slot": 0, "top": {"team": "Michigan",   "seed": 1},  "bottom": {"team": null, "seed": 16, "first_four_id": "FF1"}},
+        {"slot": 0, "top": {"team": "Michigan",   "seed": 1},  "bottom": {"team": "Howard", "seed": 16, "first_four_id": "FF1"}},
         {"slot": 1, "top": {"team": "Georgia",    "seed": 8},  "bottom": {"team": "Saint Louis",      "seed": 9}},
         {"slot": 2, "top": {"team": "Texas Tech", "seed": 5},  "bottom": {"team": "Akron",            "seed": 12}},
         {"slot": 3, "top": {"team": "Alabama",    "seed": 4},  "bottom": {"team": "Hofstra",          "seed": 13}},
