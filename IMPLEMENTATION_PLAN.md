@@ -188,7 +188,7 @@ the Points × Seed system.
 that is internally consistent and EV-optimized.
 
 **Tasks:**
-- [ ] Implement `src/bracket_builder.py`:
+- [x] Implement `src/bracket_builder.py`:
   - Accept a champion Team as input
   - Build the champion's path backward from Championship → R1
   - For the champion's region: pick opponents that maximize the champion's
@@ -197,13 +197,13 @@ that is internally consistent and EV-optimized.
   - For non-champion regions: use pure EV optimization at each node
   - Ensure internal consistency: no team can win a game after losing an earlier
     round
-- [ ] Handle the bracket topology correctly:
+- [x] Handle the bracket topology correctly:
   - 4 regions of 16 teams
   - Regional winners meet in Final Four (East vs South, West vs Midwest based
     on the 2026 bracket structure)
   - The champion's Final Four opponent is the highest-EV regional winner from
     the paired region
-- [ ] Output a complete Bracket object with all 63 picks
+- [x] Output a complete Bracket object with all 63 picks
 
 **Acceptance Criteria:**
 - Generate a bracket with Houston as champion — verify Houston wins every round
@@ -262,8 +262,31 @@ brackets and estimate expected scores.
 - A chalk bracket scores lower in expectation than an EV-optimized bracket
   under × Seed scoring
 
-**Sprint Update:**
-> _[To be completed by Claude Code]_
+**Sprint Update (Completed 2026-03-18):**
+> - Implemented `src/simulator.py` with 3 dataclasses (`SimulatedTournament`, `BracketScore`,
+>   `SimulationResults`) and 7 functions (`simulate_game`, `simulate_region`, `simulate_tournament`,
+>   `score_bracket`, `run_simulation`, `championship_probabilities`, `print_simulation_report`).
+> - Performance: 10,000 simulations complete in ~1.8 seconds (well under 60s target).
+>   Pure Python loops with numpy only for RNG (`default_rng`). ~630K `win_probability_teams`
+>   calls per run are fast enough without caching.
+> - Reproducibility: same seed produces identical results across runs.
+> - **Championship probability calibration vs Vegas:**
+>   Duke 23.8% (Vegas 22%), Arizona 22.4% (19%), Michigan 13.3% (20%),
+>   Florida 8.2% (12%), Houston 6.8% (9%), Iowa State 6.3% (4.5%),
+>   Illinois 4.7% (5%). UConn flagged at 1.6% vs Vegas 5.6% — likely because
+>   our injury overrides for their region opponents are more aggressive than Vegas.
+>   Michigan lower than Vegas (13.3% vs 20%) — injury override of -3.0 may be too harsh.
+> - **Key finding: Single-game EV optimization does NOT outperform chalk in total bracket
+>   score.** Chalk Duke bracket (mean 224.4) outscores EV Duke bracket (mean 215.6) by
+>   8.7 points. The reason: EV optimization picks upset winners in later rounds (e.g.,
+>   9-seeds over 1-seeds in R2 because 9×2 > 1×2) that almost never actually happen.
+>   The cascading correctness of chalk picks (favorites keep winning → more rounds correct)
+>   outweighs the per-game EV advantage of upset picks. This means the bracket builder's
+>   pure EV approach is too aggressive with upsets in R2+. Sprint 4.1 portfolio generation
+>   should mix chalk and upset picks strategically rather than going all-in on single-game EV.
+> - Validation: `validate_sprint2_3.py` passes all 6 tests (single simulation validity,
+>   scoring correctness, championship probability sanity, bracket score sanity, performance,
+>   reproducibility).
 
 ---
 
@@ -338,8 +361,27 @@ disagreement.
 **Note:** This is a nice-to-have. If time is tight, skip this sprint. The Monte
 Carlo simulator will identify high-uncertainty games on its own.
 
-**Sprint Update:**
-> _[To be completed]_
+**Sprint Update (Completed 2026-03-18):**
+> - Collected expert bracket picks from ESPN (60-analyst poll + Jay Bilas), CBS Sports
+>   (Norlander, Parrish, Bruce Pearl panel), Fox Sports, SI, Covers, SportsBookReview.
+> - Saved to `data/expert_picks.json` with structured expert brackets, consensus upsets,
+>   key disagreements, Vegas odds, CBS pool popularity, and portfolio implications.
+> - **ESPN 60-analyst poll champion votes:** Arizona 33, Michigan 10, Duke 9, Florida 5,
+>   Houston 2, Purdue 1. Arizona is the overwhelming expert favorite.
+> - **CBS pool popularity:** Duke 29.2%, Arizona 21.9%, Michigan 13.7%. Duke is the
+>   public's favorite despite having the toughest path + injuries.
+> - **Consensus upset picks (near-unanimous):** South Florida over Louisville (11v6),
+>   Akron over Texas Tech (12v5). Both align with our injury overrides.
+> - **Key disagreement — East region:** Experts split on WHO beats Duke: Michigan State
+>   (Bilas E8 upset), St. John's (Pearl S16 upset), UConn (some models). Duke wins
+>   region per 39/60 ESPN analysts. East is the highest-variance region.
+> - **Key disagreement — South region:** Houston (34/60 ESPN, home-court at Toyota Center)
+>   vs Florida (1-seed, defending champion, easiest path). Our portfolio covers both.
+> - **Portfolio validation:** Our 4 contrarian picks (Iowa State, Gonzaga, Illinois, Kansas)
+>   have ZERO expert champion picks — maximum differentiation. Our chalk/value picks
+>   (Duke, Arizona, Houston, Michigan) all have strong expert support.
+> - **Swing bracket insight:** Duke is most popular public pick but has toughest path +
+>   injuries. East region disagreement is ideal for swing bracket differentiation.
 
 ---
 
@@ -352,28 +394,63 @@ Carlo simulator will identify high-uncertainty games on its own.
 
 **Objective:** Generate all 10 brackets with portfolio-level diversification.
 
+**Design Notes (from Sprint 2.3 + 3.2 findings):**
+
+The Monte Carlo simulator revealed that pure single-game EV optimization picks too
+many upsets in later rounds, hurting total bracket score (chalk Duke outscored EV Duke
+by 8.7 points). Expert data from Sprint 3.2 confirms the right approach: mostly chalk
+with **selective, injury-driven upsets** that have high confidence. The portfolio.py
+design below incorporates both findings.
+
+Additionally, expert picks data (`data/expert_picks.json`) provides:
+- Consensus upset picks that align with our injury overrides (lock these across brackets)
+- CBS pool popularity data for contrarian value calculation
+- Key regional disagreements for bracket diversification
+
 **Tasks:**
 - [ ] Implement `src/portfolio.py`:
   - Load the 10 champion assignments from portfolio_plan.json
-  - Generate each bracket using bracket_builder
-  - Apply correlation penalty: for each subsequent bracket, penalize picks that
-    match previous brackets in close-call games (EV gap < threshold)
-  - For the swing bracket (#10), identify the game with highest disagreement
-    across the other 9 brackets and pick the opposite side
+  - Load expert consensus data from `data/expert_picks.json`
+  - **Pick strategy (3 tiers instead of pure EV):**
+    - **Locked picks:** Consensus upsets backed by both EV and expert agreement
+      (South Florida/Louisville, Akron/Texas Tech, VCU/North Carolina,
+      Texas/BYU, Iowa/Clemson). These go in all 10 brackets.
+    - **Chalk picks:** For non-champion regions in R2+, default to chalk (pick the
+      favorite by win probability) rather than single-game EV. The simulator showed
+      cascading correctness matters more than per-game EV in later rounds.
+    - **Diversification picks:** In close-call games (EV gap < threshold OR win
+      probability 40-60%), vary the pick across brackets. Chalk brackets (#1-2)
+      pick the favorite; value/contrarian brackets pick the upset side.
+  - Generate each bracket using bracket_builder (champion path unchanged)
+  - Apply diversification: for each subsequent bracket, flip close-call picks
+    that match previous brackets, prioritizing games in the champion's region
+    and Final Four path
+  - **Swing bracket (#10, Michigan):** Use expert disagreement data — East region
+    is highest-variance (experts split on Duke/MSU/STJ/UConn), so swing bracket
+    picks against Duke-wins-East consensus. Also pick opposite side of any game
+    where 8+ of the other 9 brackets agree.
 - [ ] Implement `src/output.py`:
   - Text-based bracket display for each of the 10 brackets
   - Highlight champion, Final Four, Elite 8
   - Flag upset picks (lower seed beating higher seed)
-  - Portfolio summary with champion distribution, regional distribution,
-    and correlation matrix
+  - Flag expert-consensus picks and contrarian picks
+  - Portfolio summary: champion distribution, regional distribution,
+    CBS pool popularity overlap (lower = more contrarian = more upside),
+    and pick correlation matrix across 10 brackets
 - [ ] Run `generate_brackets.py` to produce all output files
+- [ ] Run simulator on all 10 brackets to verify expected scores and
+      portfolio-level diversification (score correlation < 0.8 between brackets)
 
 **Acceptance Criteria:**
 - 10 complete brackets generated, each internally consistent
 - No two brackets are identical
 - Champions match the portfolio plan
 - Regional distribution: no more than 3 brackets from any single region
+- Consensus upset picks appear in all 10 brackets
+- Chalk brackets (#1-2) have ≤5 upset picks outside R1
+- Contrarian brackets (#5-8) have meaningfully different non-champion regions
 - Output is human-readable and can be used to fill out CBS brackets manually
+- Simulator confirms all 10 brackets score > 150 mean expected points
 
 **Sprint Update:**
 > _[To be completed by Claude Code]_

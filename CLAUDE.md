@@ -26,7 +26,7 @@ src/
   win_probability.py    — P(A beats B) logistic model (K=0.1198, ~3%/pt)
   ev_engine.py          — EV scoring: score_correct_pick, ev_of_pick, compare_ev, cumulative_ev, champion_path_ev
   bracket_builder.py    — Bracket dataclass, build_bracket(), fill_region_ev/champion()
-  simulator.py          — [Sprint 2.3] Monte Carlo tournament simulation
+  simulator.py          — Monte Carlo sim: simulate_tournament, score_bracket, run_simulation
   portfolio.py          — [Sprint 4.1] Diversification across 10 brackets
   output.py             — [Sprint 4.1] Bracket formatting and summaries
 data/                   — Historical data, expert picks
@@ -41,8 +41,8 @@ generate_brackets.py    — [Sprint 4.1] Main entry point
 - [x] Sprint 2.1 — EV scoring engine
 - [x] Sprint 3.1 — Team ratings data collection (injury updates, Vegas calibration, portfolio finalized)
 - [x] Sprint 2.2 — Backwards-chaining bracket builder
-- [ ] Sprint 2.3 — Monte Carlo simulator
-- [ ] Sprint 3.2 — Expert bracket collection (optional, skip if time-constrained)
+- [x] Sprint 2.3 — Monte Carlo simulator
+- [x] Sprint 3.2 — Expert bracket collection (ESPN poll, CBS, Fox, Vegas odds → data/expert_picks.json)
 - [ ] Sprint 4.1 — Portfolio generation & output
 - [ ] Sprint 4.2 — Review, adjust, submit
 
@@ -103,6 +103,8 @@ python -m src.ev_engine        # Print all R1 matchups with EV analysis
 python validate_sprint2_1.py   # Validate EV engine functions
 python -m src.bracket_builder  # Build & print Houston + Duke brackets
 python validate_sprint2_2.py   # Validate bracket builder (6 tests)
+python -m src.simulator        # Monte Carlo sim: 10K tournaments, Vegas calibration
+python validate_sprint2_3.py   # Validate simulator (6 tests)
 ```
 
 ## Dependencies
