@@ -29,24 +29,37 @@ compute win probabilities for any matchup.
 configuration with all 68 teams, their seeds, and regional assignments.
 
 **Tasks:**
-- [ ] Create the directory structure from SPEC.md
-- [ ] Populate `config/bracket_2026.json` with all 68 teams organized by region,
+- [x] Create the directory structure from SPEC.md
+- [x] Populate `config/bracket_2026.json` with all 68 teams organized by region,
       including First Four matchups (use the bracket data from STRATEGY.md
       Appendix A as the starting point)
-- [ ] Create `config/portfolio_plan.json` with the 10 champion assignments:
+- [x] Create `config/portfolio_plan.json` with the 10 champion assignments:
       Duke(1E), Arizona(1W), Houston(2S), UConn(2E), Iowa State(2MW),
       Gonzaga(3W), Illinois(3S), Kansas(4E), Purdue(2W), TBD-Swing(MW)
-- [ ] Create `config/injury_overrides.json` with the override dictionary from
+- [x] Create `config/injury_overrides.json` with the override dictionary from
       SPEC.md (Michigan, Alabama, UNC, BYU, Duke, Gonzaga)
-- [ ] Create `requirements.txt` (numpy, pandas)
+- [x] Create `requirements.txt` (numpy, pandas)
 
 **Acceptance Criteria:**
 - All config files load without errors
 - Every team in the bracket can be looked up by name and returns seed + region
 - Injury overrides are applied correctly to affected teams
 
-**Sprint Update:**
-> _[To be completed by Claude Code]_
+**Sprint Update (Completed 2026-03-18):**
+> - Created directory structure: `config/`, `src/`, `data/`, `output/brackets/`
+> - Populated `config/bracket_2026.json` with all 68 teams across 4 regions.
+>   Bracket tree is encoded via slot ordering (0-7 per region); First Four
+>   slots use `null` team with `first_four_id` references. Final Four pairings:
+>   East vs South, West vs Midwest.
+> - Moved `portfolio_plan.json` from root to `config/portfolio_plan.json` (unchanged).
+> - Created `config/injury_overrides.json` with 6 overrides from SPEC.md, including
+>   Gonzaga's conditional `sweet_16_override`.
+> - Created `requirements.txt` (numpy, pandas).
+> - Validation script (`validate_sprint1_1.py`) confirms: all JSON valid, 68 unique
+>   teams, seeds 1-16 in each region, First Four IDs cross-reference correctly,
+>   all injury/portfolio team names match bracket data.
+> - **Key decision:** Team names use exact STRATEGY.md Appendix A names as canonical
+>   identifiers. All config files must match these exactly.
 
 ---
 
@@ -57,10 +70,9 @@ configuration with all 68 teams, their seeds, and regional assignments.
 implement the win probability function.
 
 **Tasks:**
-- [ ] Create `config/team_ratings.json` — populate with BartTorvik or KenPom
-      data for all 68 teams. At minimum: AdjO, AdjD, AdjEM for each team.
-      If full data isn't available, estimate from seed position using
-      historical averages.
+- [ ] Create `config/team_ratings.json` — scrape from KenPom (see Data
+      Gathering Note below) for all 68 teams. Fields: AdjO (ORtg), AdjD
+      (DRtg), AdjEM (NetRtg), plus rank and conference.
 - [ ] Implement `src/data_loader.py`:
   - Load bracket structure, team ratings, and injury overrides
   - Merge into a single Team data structure with final adjusted ratings
@@ -71,11 +83,24 @@ implement the win probability function.
     (e.g., a 1-seed vs 16-seed should be ~99%, 5 vs 12 should be ~65%)
   - Validate against historical seed upset rates
 
-**Data Gathering Note:** To populate team_ratings.json, visit
-https://barttorvik.com/trank.php and manually record AdjOE, AdjDE, and
-BartTorvik rank for the 68 tournament teams. If this is too time-consuming,
-use a tiered approach: full data for seeds 1-6 (~48 teams), seed-average
-estimates for seeds 7-16. The win probability engine should still work.
+**Data Gathering Note:** KenPom's main rankings table at https://kenpom.com
+is publicly accessible without a subscription. It contains all ~360 D-I teams
+with the exact columns we need: Rk, Team, Conf, W-L, NetRtg (AdjEM), ORtg
+(AdjO) + rank, DRtg (AdjD) + rank, AdjT, Luck, and SOS metrics. Tournament
+seeds are shown inline with team names (e.g., "Duke 1"). We verified this
+on 2026-03-18 via Playwright — the full table loads in a single page.
+
+**Approach:** Use Playwright (available as MCP tool) to load kenpom.com,
+extract the HTML table, parse all ~360 rows, then filter to the 68 tournament
+teams by matching against `bracket_2026.json` team names. Output to
+`config/team_ratings.json`. This replaces the manual-entry approach — faster
+and less error-prone. Team name matching between KenPom and our canonical
+names will need a mapping for any discrepancies (e.g., KenPom may use
+"St. John's" vs our "St. John's" — needs verification during scrape).
+
+**Fallback:** If KenPom's page structure changes or scraping fails, BartTorvik
+(barttorvik.com/trank.php) has equivalent data for free. Manual entry of 68
+teams is a last resort (~30 min).
 
 **Acceptance Criteria:**
 - `data_loader.py` produces a complete list of 68 teams with ratings
@@ -197,16 +222,17 @@ seed-based approach. This phase can happen alongside Phase 2 — Nick gathers
 data while Claude Code builds the engine.
 
 ### Sprint 3.1: Team Ratings Data Collection
-**Estimated Time:** 1-2 hours (manual work by Nick)
+**Estimated Time:** 30 minutes (automated via Playwright)
 
 **Objective:** Populate team_ratings.json with real efficiency data.
 
+**Note:** This sprint has been largely absorbed into Sprint 1.2. The KenPom
+scrape (via Playwright) will happen as the first task of Sprint 1.2, producing
+`config/team_ratings.json` automatically. This sprint now covers only the
+manual follow-up work.
+
 **Tasks:**
-- [ ] Visit barttorvik.com and record AdjOE, AdjDE, and overall rank for all
-      68 tournament teams
-- [ ] Alternative: find a CSV export or published table and adapt it
-- [ ] Cross-reference top teams against KenPom rankings from search results in
-      STRATEGY.md to validate
+- [ ] Verify the Playwright-scraped KenPom data looks correct for top teams
 - [ ] Update injury_overrides.json with any new developments (First Four
       results, last-minute injury news)
 
