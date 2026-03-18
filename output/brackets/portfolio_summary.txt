@@ -1,0 +1,52 @@
+
+======================================================================
+PORTFOLIO SUMMARY
+======================================================================
+
+  #   Champion             Seed  Region     Tier            Path     Mean  Champ%
+  --- -------------------- ----- ---------- --------------- ------ ------ -------
+  1   Duke                 1     East       chalk           63      229.4  23.8%
+  2   Arizona              1     West       chalk           63      228.9  22.4%
+  3   Houston              2     South      value_core      126     223.1   6.8%
+  4   UConn                2     East       value_core      126     213.5   1.6%
+  5   Iowa State           2     Midwest    value_core      126     222.8   6.3%
+  6   Gonzaga              3     West       value_core      189     211.8   1.2%
+  7   Illinois             3     South      contrarian      189     204.1   4.7%
+  8   Kansas               4     East       contrarian      252     196.0   0.4%
+  9   Purdue               2     West       contrarian      126     210.2   4.5%
+  10  Michigan             1     Midwest    swing           63      211.3  13.3%
+
+  Upset Counts:
+  #   Champion               R1  R2+  Total
+  --- -------------------- ---- ---- ------
+  1   Duke                    7    3     10
+  2   Arizona                 7    3     10
+  3   Houston                 9    6     15
+  4   UConn                   8    5     13
+  5   Iowa State              9    6     15
+  6   Gonzaga                 9    7     16
+  7   Illinois               10   15     25
+  8   Kansas                  9   15     24
+  9   Purdue                 11   14     25
+  10  Michigan               10   14     24
+
+  Regional Champions (E8 Winners):
+    East      : Duke x5, St. John's x3, UConn x1, Kansas x1
+    West      : Arizona x5, Utah State x3, Gonzaga x1, Purdue x1
+    Midwest   : Michigan x6, Tennessee x3, Iowa State x1
+    South     : Florida x5, Illinois x4, Houston x1
+
+  Pick Correlation Matrix (fraction of 63 games that agree):
+         # 1  # 2  # 3  # 4  # 5  # 6  # 7  # 8  # 9  #10
+  # 1    --  0.98 0.92 0.92 0.92 0.90 0.59 0.57 0.60 0.65
+  # 2   0.98  --  0.92 0.92 0.92 0.90 0.59 0.57 0.60 0.65
+  # 3   0.92 0.92  --  0.87 0.89 0.90 0.62 0.54 0.63 0.68
+  # 4   0.92 0.92 0.87  --  0.86 0.84 0.59 0.59 0.60 0.62
+  # 5   0.92 0.92 0.89 0.86  --  0.89 0.59 0.57 0.63 0.67
+  # 6   0.90 0.90 0.90 0.84 0.89  --  0.62 0.54 0.62 0.68
+  # 7   0.59 0.59 0.62 0.59 0.59 0.62  --  0.81 0.90 0.87
+  # 8   0.57 0.57 0.54 0.59 0.57 0.54 0.81  --  0.79 0.76
+  # 9   0.60 0.60 0.63 0.60 0.63 0.62 0.90 0.79  --  0.87
+  #10   0.65 0.65 0.68 0.62 0.67 0.68 0.87 0.76 0.87  -- 
+
+  [OK] All 10 brackets are unique.

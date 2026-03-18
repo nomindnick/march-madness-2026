@@ -27,11 +27,11 @@ src/
   ev_engine.py          — EV scoring: score_correct_pick, ev_of_pick, compare_ev, cumulative_ev, champion_path_ev
   bracket_builder.py    — Bracket dataclass, build_bracket(), fill_region_ev/champion()
   simulator.py          — Monte Carlo sim: simulate_tournament, score_bracket, run_simulation
-  portfolio.py          — [Sprint 4.1] Diversification across 10 brackets
-  output.py             — [Sprint 4.1] Bracket formatting and summaries
+  portfolio.py          — 3-tier pick strategy, generate_portfolio() -> 10 Brackets
+  output.py             — CBS-entry bracket display, upset flags, correlation matrix
 data/                   — Historical data, expert picks
-output/brackets/        — Generated bracket files
-generate_brackets.py    — [Sprint 4.1] Main entry point
+output/brackets/        — Generated bracket files (10 brackets + portfolio summary)
+generate_brackets.py    — Main entry point: generate, simulate, validate, write
 ```
 
 ## Sprint Status
@@ -43,7 +43,7 @@ generate_brackets.py    — [Sprint 4.1] Main entry point
 - [x] Sprint 2.2 — Backwards-chaining bracket builder
 - [x] Sprint 2.3 — Monte Carlo simulator
 - [x] Sprint 3.2 — Expert bracket collection (ESPN poll, CBS, Fox, Vegas odds → data/expert_picks.json)
-- [ ] Sprint 4.1 — Portfolio generation & output
+- [x] Sprint 4.1 — Portfolio generation & output
 - [ ] Sprint 4.2 — Review, adjust, submit
 
 ## Critical Conventions
@@ -105,6 +105,7 @@ python -m src.bracket_builder  # Build & print Houston + Duke brackets
 python validate_sprint2_2.py   # Validate bracket builder (6 tests)
 python -m src.simulator        # Monte Carlo sim: 10K tournaments, Vegas calibration
 python validate_sprint2_3.py   # Validate simulator (6 tests)
+python generate_brackets.py   # Generate 10 brackets, simulate, validate, write output
 ```
 
 ## Dependencies

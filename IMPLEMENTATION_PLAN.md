@@ -452,8 +452,29 @@ Additionally, expert picks data (`data/expert_picks.json`) provides:
 - Output is human-readable and can be used to fill out CBS brackets manually
 - Simulator confirms all 10 brackets score > 150 mean expected points
 
-**Sprint Update:**
-> _[To be completed by Claude Code]_
+**Sprint Update (Completed 2026-03-18):**
+> - Created `src/portfolio.py` with 3-tier pick strategy: locked consensus upsets (5 games
+>   in all brackets), chalk R2+ for safe brackets, EV R2+ for contrarian brackets.
+> - Created `src/output.py` with CBS-entry-optimized bracket display, upset [U] and
+>   consensus [C] flags, pick correlation matrix, and portfolio summary.
+> - Created `generate_brackets.py` as main entry point with full acceptance testing.
+> - **5 locked picks:** South Florida/Louisville (East), Akron/Texas Tech (MW),
+>   Texas/BYU (West), VCU/North Carolina (South), Iowa/Clemson (South). All backed by
+>   expert consensus (2-5 experts) AND EV agreement OR injury overrides.
+> - **6 close-call diversification games** identified: UCF/UCLA (East), Utah State/Villanova
+>   (West), Saint Louis/Georgia (MW), Santa Clara/Kentucky (MW), Texas A&M/Saint Mary's
+>   (South). Value brackets rotate 2-3 of these; contrarian brackets take all.
+> - **Key design: two bracket profiles.** Chalk/value brackets (#1-6) use win probability
+>   for R2+ (safe, mean 211-229 pts). Contrarian/swing brackets (#7-10) use EV for R2+
+>   (aggressive, mean 196-211 pts, but higher upside — 90th percentile up to 294 pts).
+> - **Correlation structure:** Chalk cluster 0.84-0.98, contrarian cluster 0.76-0.90,
+>   cross-cluster 0.54-0.68. Contrarian brackets are meaningfully different.
+> - **All acceptance criteria pass:** 10 valid unique brackets, champions match plan,
+>   all scores > 150 (range 196-229), chalk brackets ≤3 non-R1 upsets, 5 locked picks
+>   in all brackets.
+> - Simulation: 10K tournaments in ~9s. Duke chalk bracket highest mean (229.4),
+>   Kansas contrarian lowest mean (196.0) but highest path value (252 pts).
+> - Output: 10 bracket files + portfolio summary written to `output/brackets/`.
 
 ---
 

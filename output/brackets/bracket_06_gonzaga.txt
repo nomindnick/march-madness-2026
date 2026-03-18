@@ -1,0 +1,97 @@
+BRACKET #6: Gonzaga (3-seed, West) — Value Core — Path: 189 pts
+======================================================================
+
+East
+  R64:
+    ( 1) Duke                     over (16) Siena
+    ( 9) TCU                      over ( 8) Ohio State [U]
+    ( 5) St. John's               over (12) Northern Iowa
+    ( 4) Kansas                   over (13) California Baptist
+    (11) South Florida            over ( 6) Louisville [U,C]
+    ( 3) Michigan State           over (14) North Dakota State
+    (10) UCF                      over ( 7) UCLA [U]
+    ( 2) UConn                    over (15) Furman
+  R32:
+    ( 1) Duke                     over ( 9) TCU
+    ( 5) St. John's               over ( 4) Kansas [U]
+    ( 3) Michigan State           over (11) South Florida
+    ( 2) UConn                    over (10) UCF
+  S16:
+    ( 1) Duke                     over ( 5) St. John's
+    ( 3) Michigan State           over ( 2) UConn [U]
+  E8:
+    ( 1) Duke                     over ( 3) Michigan State
+
+West [CHAMPION]
+  R64:
+    ( 1) Arizona                  over (16) LIU
+    ( 9) Utah State               over ( 8) Villanova [U]
+    ( 5) Wisconsin                over (12) High Point
+    ( 4) Arkansas                 over (13) Hawaii
+    (11) Texas                    over ( 6) BYU [U,C]
+  * ( 3) Gonzaga                  over (14) Kennesaw State
+    ( 7) Miami (FL)               over (10) Missouri
+    ( 2) Purdue                   over (15) Queens (NC)
+  R32:
+    ( 1) Arizona                  over ( 9) Utah State
+    ( 4) Arkansas                 over ( 5) Wisconsin
+  * ( 3) Gonzaga                  over (11) Texas
+    ( 2) Purdue                   over ( 7) Miami (FL)
+  S16:
+    ( 1) Arizona                  over ( 4) Arkansas
+  * ( 3) Gonzaga                  over ( 2) Purdue [U]
+  E8:
+  * ( 3) Gonzaga                  over ( 1) Arizona [U]
+
+Midwest
+  R64:
+    ( 1) Michigan                 over (16) Howard
+    ( 8) Georgia                  over ( 9) Saint Louis
+    (12) Akron                    over ( 5) Texas Tech [U,C]
+    ( 4) Alabama                  over (13) Hofstra
+    ( 6) Tennessee                over (11) SMU
+    ( 3) Virginia                 over (14) Wright State
+    (10) Santa Clara              over ( 7) Kentucky [U]
+    ( 2) Iowa State               over (15) Tennessee State
+  R32:
+    ( 1) Michigan                 over ( 8) Georgia
+    ( 4) Alabama                  over (12) Akron
+    ( 3) Virginia                 over ( 6) Tennessee
+    ( 2) Iowa State               over (10) Santa Clara
+  S16:
+    ( 1) Michigan                 over ( 4) Alabama
+    ( 2) Iowa State               over ( 3) Virginia
+  E8:
+    ( 1) Michigan                 over ( 2) Iowa State
+
+South
+  R64:
+    ( 1) Florida                  over (16) Lehigh
+    ( 9) Iowa                     over ( 8) Clemson [U,C]
+    ( 5) Vanderbilt               over (12) McNeese
+    ( 4) Nebraska                 over (13) Troy
+    (11) VCU                      over ( 6) North Carolina [U,C]
+    ( 3) Illinois                 over (14) Idaho
+    ( 7) Saint Mary's             over (10) Texas A&M
+    ( 2) Houston                  over (15) Penn
+  R32:
+    ( 1) Florida                  over ( 9) Iowa
+    ( 5) Vanderbilt               over ( 4) Nebraska [U]
+    ( 3) Illinois                 over (11) VCU
+    ( 2) Houston                  over ( 7) Saint Mary's
+  S16:
+    ( 1) Florida                  over ( 5) Vanderbilt
+    ( 2) Houston                  over ( 3) Illinois
+  E8:
+    ( 1) Florida                  over ( 2) Houston
+
+Final Four
+  SF1 (East vs South):    (1) Duke vs  (1) Florida
+    Winner:  (1) Duke
+  SF2 (West vs Midwest): *(3) Gonzaga vs  (1) Michigan
+    Winner: *(3) Gonzaga
+
+  Championship: *(3) Gonzaga over  (1) Duke
+
+  Upsets: 9 in R1, 7 in R2+ (16 total)
+  Total picks: 63
