@@ -70,14 +70,14 @@ configuration with all 68 teams, their seeds, and regional assignments.
 implement the win probability function.
 
 **Tasks:**
-- [ ] Create `config/team_ratings.json` — scrape from KenPom (see Data
+- [x] Create `config/team_ratings.json` — scrape from KenPom (see Data
       Gathering Note below) for all 68 teams. Fields: AdjO (ORtg), AdjD
       (DRtg), AdjEM (NetRtg), plus rank and conference.
-- [ ] Implement `src/data_loader.py`:
+- [x] Implement `src/data_loader.py`:
   - Load bracket structure, team ratings, and injury overrides
   - Merge into a single Team data structure with final adjusted ratings
   - Handle Gonzaga's conditional rating (different for rounds 1-2 vs 3+)
-- [ ] Implement `src/win_probability.py`:
+- [x] Implement `src/win_probability.py`:
   - Given two Teams, compute P(A wins) using logistic model on efficiency margin
   - Calibrate so that the outputs roughly match known relationships
     (e.g., a 1-seed vs 16-seed should be ~99%, 5 vs 12 should be ~65%)
@@ -111,8 +111,22 @@ teams is a last resort (~30 min).
   - An 8 vs 9 matchup ≈ 50%
 - Print a sample matchup table for one region to verify
 
-**Sprint Update:**
-> _[To be completed by Claude Code]_
+**Sprint Update (Completed 2026-03-18):**
+> - Scraped KenPom ratings via Playwright for all 365 D-I teams, filtered to 68
+>   tournament teams. Applied 14 name mappings (e.g., `Connecticut` → `UConn`,
+>   `Iowa St.` → `Iowa State`, `Miami FL` → `Miami (FL)`).
+> - Created `config/team_ratings.json` with AdjO, AdjD, AdjEM, rank, and conference
+>   for all 68 teams. Source: kenpom.com, scraped 2026-03-18.
+> - Implemented `src/data_loader.py` with `Team` dataclass and `load_teams()` function.
+>   Loads bracket structure, ratings, and injury overrides; merges into dict[str, Team].
+>   Gonzaga's conditional rating handled via `sweet_16_adj_em` field + `get_adj_em()` helper.
+> - Implemented `src/win_probability.py` with logistic model (K=0.1198, ~3% per point).
+>   Calibration: Duke vs Siena = 99.1%, 8v9 matchups ≈ 40-64%, 1-pt margin = 3.0% shift.
+> - Validation script (`validate_sprint1_2.py`) confirms: all 68 teams loaded, 6 injury
+>   overrides applied correctly, Gonzaga conditional rating works, win probability calibrated.
+> - **Key observation:** Team-specific matchup probabilities diverge from historical seed
+>   averages. E.g., St. John's (#17 KenPom) vs Northern Iowa (#71) = 84.4%, not the
+>   historical 5v12 average of ~65%. This is correct — the model uses actual ratings.
 
 ---
 

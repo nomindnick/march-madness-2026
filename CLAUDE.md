@@ -20,10 +20,10 @@ config/
   bracket_2026.json     — 68 teams, 4 regions, First Four, Final Four pairings
   portfolio_plan.json   — 10 champion assignments (2 chalk / 4 value / 3 contrarian / 1 swing)
   injury_overrides.json — AdjEM deltas for injured/suspended players
-  team_ratings.json     — [Sprint 1.2] BartTorvik efficiency ratings per team
+  team_ratings.json     — KenPom efficiency ratings (AdjO, AdjD, AdjEM, rank, conf)
 src/
-  data_loader.py        — [Sprint 1.2] Load and merge config files
-  win_probability.py    — [Sprint 1.2] P(A beats B) logistic model
+  data_loader.py        — Team dataclass, load_teams() -> dict[str, Team], get_adj_em()
+  win_probability.py    — P(A beats B) logistic model (K=0.1198, ~3%/pt)
   ev_engine.py          — [Sprint 2.1] Expected value under x Seed scoring
   bracket_builder.py    — [Sprint 2.2] Backwards-chaining bracket construction
   simulator.py          — [Sprint 2.3] Monte Carlo tournament simulation
@@ -37,7 +37,7 @@ generate_brackets.py    — [Sprint 4.1] Main entry point
 ## Sprint Status
 
 - [x] Sprint 1.1 — Project scaffolding & bracket data (config files, directory structure)
-- [ ] Sprint 1.2 — Team ratings & win probability engine
+- [x] Sprint 1.2 — Team ratings & win probability engine
 - [ ] Sprint 2.1 — EV scoring engine
 - [ ] Sprint 2.2 — Backwards-chaining bracket builder
 - [ ] Sprint 2.3 — Monte Carlo simulator
@@ -94,6 +94,9 @@ EV optimization picks higher-seed teams more aggressively than probability alone
 
 ```bash
 python validate_sprint1_1.py   # Validate config file integrity
+python validate_sprint1_2.py   # Validate team ratings & win probability
+python -m src.data_loader      # Print all 68 teams sorted by AdjEM
+python -m src.win_probability  # Print East R1 matchups + calibration check
 ```
 
 ## Dependencies
