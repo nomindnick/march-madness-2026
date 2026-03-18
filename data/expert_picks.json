@@ -1,0 +1,290 @@
+{
+  "metadata": {
+    "collected": "2026-03-18",
+    "purpose": "Expert bracket picks for identifying consensus, disagreements, and swing games",
+    "note": "Team names use canonical bracket_2026.json names"
+  },
+
+  "expert_brackets": [
+    {
+      "expert": "Jay Bilas",
+      "source": "ESPN",
+      "champion": "Arizona",
+      "champion_seed": 1,
+      "final_four": ["Michigan State", "Florida", "Arizona", "Iowa State"],
+      "elite_eight": ["Duke", "Michigan State", "Florida", "Houston", "Arizona", "Purdue", "Michigan", "Iowa State"],
+      "notable_upsets": [
+        {"round": 1, "winner": "South Florida", "loser": "Louisville", "winner_seed": 11, "loser_seed": 6},
+        {"round": 1, "winner": "Texas", "loser": "BYU", "winner_seed": 11, "loser_seed": 6},
+        {"round": 1, "winner": "UCF", "loser": "UCLA", "winner_seed": 10, "loser_seed": 7},
+        {"round": 2, "winner": "Texas", "loser": "Gonzaga", "winner_seed": 11, "loser_seed": 3},
+        {"round": 2, "winner": "St. John's", "loser": "Kansas", "winner_seed": 5, "loser_seed": 4},
+        {"round": 4, "winner": "Michigan State", "loser": "Duke", "winner_seed": 3, "loser_seed": 1}
+      ]
+    },
+    {
+      "expert": "Matt Norlander",
+      "source": "CBS Sports",
+      "champion": "Arizona",
+      "champion_seed": 1,
+      "final_four": ["Duke", "Houston", "Arizona", "Michigan"],
+      "notable_upsets": []
+    },
+    {
+      "expert": "Gary Parrish",
+      "source": "CBS Sports",
+      "champion": "Houston",
+      "champion_seed": 2,
+      "final_four": ["Duke", "Houston", "Arizona", "Michigan"],
+      "notable_upsets": []
+    },
+    {
+      "expert": "Bruce Pearl (CBS panel)",
+      "source": "CBS Sports",
+      "champion": "Arizona",
+      "champion_seed": 1,
+      "final_four": ["St. John's", "Florida", "Arizona", "Michigan"],
+      "notable_upsets": [
+        {"round": 3, "winner": "St. John's", "loser": "Duke", "winner_seed": 5, "loser_seed": 1}
+      ]
+    },
+    {
+      "expert": "Myron Medcalf",
+      "source": "ESPN",
+      "champion": "Duke",
+      "champion_seed": 1,
+      "final_four": ["Duke", "Florida", "Arizona", "Michigan"],
+      "notable_upsets": []
+    },
+    {
+      "expert": "Jason Logan",
+      "source": "Covers",
+      "champion": "Arizona",
+      "champion_seed": 1,
+      "final_four": ["Duke", "Florida", "Arizona", "Iowa State"],
+      "notable_upsets": [
+        {"round": 1, "winner": "VCU", "loser": "North Carolina", "winner_seed": 11, "loser_seed": 6}
+      ]
+    },
+    {
+      "expert": "Fox Sports Expert 1",
+      "source": "Fox Sports",
+      "champion": "Duke",
+      "champion_seed": 1,
+      "final_four": [],
+      "notable_upsets": [
+        {"round": 1, "winner": "South Florida", "loser": "Louisville", "winner_seed": 11, "loser_seed": 6},
+        {"round": 1, "winner": "Texas", "loser": "BYU", "winner_seed": 11, "loser_seed": 6}
+      ]
+    },
+    {
+      "expert": "Fox Sports Expert 2",
+      "source": "Fox Sports",
+      "champion": "Michigan",
+      "champion_seed": 1,
+      "final_four": [],
+      "notable_upsets": []
+    },
+    {
+      "expert": "Kevin Sweeney",
+      "source": "Sports Illustrated",
+      "champion": null,
+      "champion_seed": null,
+      "final_four": ["Duke", "Houston", "Arkansas", "Michigan"],
+      "notable_upsets": [
+        {"round": 1, "winner": "South Florida", "loser": "Louisville", "winner_seed": 11, "loser_seed": 6},
+        {"round": 1, "winner": "Texas A&M", "loser": "Saint Mary's", "winner_seed": 10, "loser_seed": 7}
+      ]
+    },
+    {
+      "expert": "SBR Expert 1",
+      "source": "SportsBookReview",
+      "champion": "Purdue",
+      "champion_seed": 2,
+      "final_four": ["St. John's", "Houston", "Purdue", "Iowa State"],
+      "notable_upsets": [
+        {"round": 1, "winner": "Akron", "loser": "Texas Tech", "winner_seed": 12, "loser_seed": 5}
+      ]
+    },
+    {
+      "expert": "SBR Expert 2",
+      "source": "SportsBookReview",
+      "champion": "Duke",
+      "champion_seed": 1,
+      "final_four": ["Duke", "Houston", "Arizona", "Michigan"],
+      "notable_upsets": []
+    }
+  ],
+
+  "espn_poll_60_analysts": {
+    "champion_votes": {
+      "Arizona": 33,
+      "Michigan": 10,
+      "Duke": 9,
+      "Florida": 5,
+      "Houston": 2,
+      "Purdue": 1
+    },
+    "regional_winner_votes": {
+      "East": {"Duke": 39, "other": 21},
+      "South": {"Houston": 34, "Florida": 26},
+      "West": {"Arizona": 33, "other": 27},
+      "Midwest": {"Michigan": "majority", "Iowa State": "significant minority"}
+    }
+  },
+
+  "cbs_bracket_pool_popularity": {
+    "Duke": 29.2,
+    "Arizona": 21.9,
+    "Michigan": 13.7,
+    "note": "Percentage of CBS Sports bracket pool entries picking each team as champion"
+  },
+
+  "vegas_championship_odds": {
+    "Duke": "+300",
+    "Michigan": "+350",
+    "Arizona": "+400",
+    "Florida": "+650",
+    "Houston": "+1200",
+    "Purdue": "+3500",
+    "Iowa State": "+2000",
+    "Gonzaga": "+6000",
+    "source": "Composite from VegasInsider, CBS Sports, Yahoo Sports (2026-03-18)"
+  },
+
+  "consensus_upsets": {
+    "near_unanimous": [
+      {
+        "winner": "South Florida", "loser": "Louisville",
+        "winner_seed": 11, "loser_seed": 6, "region": "East",
+        "reason": "Louisville 4-8 in last 12 Quad 1 games, Mikel Brown Jr. questionable. All 3 SI experts + Bilas + Fox picked this.",
+        "expert_count": 5
+      },
+      {
+        "winner": "Akron", "loser": "Texas Tech",
+        "winner_seed": 12, "loser_seed": 5, "region": "Midwest",
+        "reason": "JT Toppin torn ACL, Texas Tech dropped 3 straight entering tourney. 5 of 10 SBR experts picked this.",
+        "expert_count": 5
+      }
+    ],
+    "popular": [
+      {
+        "winner": "Texas", "loser": "BYU",
+        "winner_seed": 11, "loser_seed": 6, "region": "West",
+        "reason": "BYU lost Richie Saunders to ACL. Texas won First Four.",
+        "expert_count": 3
+      },
+      {
+        "winner": "VCU", "loser": "North Carolina",
+        "winner_seed": 11, "loser_seed": 6, "region": "South",
+        "reason": "UNC weakened by injuries (our -6.0 override). VCU has 2011 Final Four pedigree.",
+        "expert_count": 3
+      },
+      {
+        "winner": "Saint Louis", "loser": "Georgia",
+        "winner_seed": 9, "loser_seed": 8, "region": "Midwest",
+        "reason": "Saint Louis shoots 40.1% from 3 on 27.2 attempts/game. All 3 SI experts agreed.",
+        "expert_count": 3
+      },
+      {
+        "winner": "UCF", "loser": "UCLA",
+        "winner_seed": 10, "loser_seed": 7, "region": "East",
+        "reason": "UCF has wins over Kansas, Texas Tech, BYU. UCLA has rotation issues.",
+        "expert_count": 2
+      },
+      {
+        "winner": "Texas A&M", "loser": "Saint Mary's",
+        "winner_seed": 10, "loser_seed": 7, "region": "South",
+        "reason": "SportsLine model pick. Texas A&M offense too much for Saint Mary's.",
+        "expert_count": 2
+      },
+      {
+        "winner": "Iowa", "loser": "Clemson",
+        "winner_seed": 9, "loser_seed": 8, "region": "South",
+        "reason": "Clemson weakened by Carter Welling torn ACL.",
+        "expert_count": 2
+      }
+    ],
+    "contrarian_deep_upsets": [
+      {
+        "winner": "Michigan State", "loser": "Duke",
+        "winner_seed": 3, "loser_seed": 1, "region": "East", "round": 4,
+        "reason": "Bilas: 'I trust Michigan State in March.' Duke missing Foster + Ngongba concerns.",
+        "expert_count": 1
+      },
+      {
+        "winner": "St. John's", "loser": "Duke",
+        "winner_seed": 5, "loser_seed": 1, "region": "East", "round": 3,
+        "reason": "Bruce Pearl: 'I like Rick Pitino and St. John's, the way they guard and shoot.'",
+        "expert_count": 1
+      }
+    ]
+  },
+
+  "key_disagreements": [
+    {
+      "game": "East Regional Final",
+      "question": "Who beats Duke?",
+      "sides": {
+        "Duke wins region": "39/60 ESPN analysts, Vegas favorite",
+        "Michigan State upsets": "Jay Bilas (E8 upset)",
+        "St. John's upsets": "Bruce Pearl (S16 upset)",
+        "UConn upsets": "Some models"
+      },
+      "relevance": "Our portfolio has Duke(1E), UConn(2E), Kansas(4E) champions from East — this disagreement directly impacts 3 brackets"
+    },
+    {
+      "game": "South Regional Final",
+      "question": "Florida or Houston wins the South?",
+      "sides": {
+        "Houston": "34/60 ESPN analysts, Gary Parrish. Houston plays S16/E8 at Toyota Center (home court).",
+        "Florida": "Defending champion, 1-seed, easiest path on paper"
+      },
+      "relevance": "Our portfolio has Houston(2S) and Illinois(3S) champions — Houston's home-court edge validates our pick"
+    },
+    {
+      "game": "Midwest Regional",
+      "question": "Does Michigan survive despite Cason injury?",
+      "sides": {
+        "Michigan wins": "Most experts still pick them, #1 defense",
+        "Iowa State emerges": "Multiple experts pick ISU to Final Four. Michigan's offense limited without Cason."
+      },
+      "relevance": "Our portfolio has Michigan(1MW) and Iowa State(2MW) — both sides covered"
+    },
+    {
+      "game": "West Regional",
+      "question": "Arizona cruises or gets challenged?",
+      "sides": {
+        "Arizona dominant": "33/60 ESPN analysts pick them as champion. 'Safest bet' per Norlander.",
+        "Purdue/Gonzaga challenge": "Some picks have Purdue or Gonzaga making E8 run"
+      },
+      "relevance": "Our portfolio has Arizona(1W), Gonzaga(3W), Purdue(2W) — all West challengers covered"
+    }
+  ],
+
+  "portfolio_implications": {
+    "alignment_with_experts": {
+      "strong": [
+        "Arizona champion (33/60 ESPN, most popular expert pick) — we have this as Bracket #2",
+        "Houston champion (Gary Parrish, home-court narrative) — we have this as Bracket #3",
+        "Duke champion (29.2% public popularity, 9/60 ESPN) — we have this as Bracket #1",
+        "Michigan champion (10/60 ESPN, 13.7% public) — we have this as Bracket #10 swing"
+      ],
+      "contrarian_value": [
+        "Iowa State champion — experts pick ISU to Final Four but rarely as champion. Our Bracket #5 has differentiation.",
+        "Gonzaga champion — +6000 odds, Huff return narrative. Zero expert picks. Our Bracket #6 is highly contrarian.",
+        "Illinois champion — zero expert picks found. Our Bracket #7 is pure contrarian.",
+        "Kansas champion — zero expert picks found. Our Bracket #8 leverages Duke injury concerns differently than MSU/STJ."
+      ]
+    },
+    "upset_picks_to_consider": [
+      "South Florida over Louisville — near-consensus, aligns with our -4.0 Louisville override",
+      "Akron over Texas Tech — near-consensus, aligns with our -6.5 Texas Tech override",
+      "VCU over North Carolina — aligns with our -6.0 UNC override",
+      "Texas over BYU — aligns with our -3.5 BYU override",
+      "Saint Louis over Georgia — experts unanimous, classic 8v9 upset",
+      "Iowa over Clemson — aligns with our -2.5 Clemson override"
+    ],
+    "swing_bracket_insight": "Duke is most popular public pick (29.2%) but has the TOUGHEST path and significant injury concerns. Expert disagreement on WHO beats Duke (MSU vs STJ vs UConn) makes the East region the highest-variance region — perfect for swing bracket differentiation."
+  }
+}

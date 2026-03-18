@@ -1,0 +1,70 @@
+{
+  "source": "Multiple sportsbooks (DraftKings, ESPN, CBS, VegasInsider, ActionNetwork)",
+  "scraped_date": "2026-03-18",
+  "notes": "Lines compiled from DraftKings opening lines (Mar 15) with updates through Mar 18. Our model spread equiv = AdjEM_diff / 1.43 (68 possessions per game).",
+
+  "championship_futures": {
+    "Duke":          {"odds": "+325",   "implied_prob": 0.22},
+    "Michigan":      {"odds": "+350",   "implied_prob": 0.21},
+    "Arizona":       {"odds": "+400",   "implied_prob": 0.20},
+    "Florida":       {"odds": "+725",   "implied_prob": 0.12},
+    "Houston":       {"odds": "+1000",  "implied_prob": 0.09},
+    "UConn":         {"odds": "+1700",  "implied_prob": 0.056},
+    "Auburn":        {"odds": "+1800",  "implied_prob": 0.053},
+    "Illinois":      {"odds": "+2000",  "implied_prob": 0.048},
+    "Iowa State":    {"odds": "+2000",  "implied_prob": 0.048},
+    "Kentucky":      {"odds": "+2000",  "implied_prob": 0.048},
+    "Alabama":       {"odds": "+2000",  "implied_prob": 0.048},
+    "Michigan State": {"odds": "+3500", "implied_prob": 0.028},
+    "St. John's":    {"odds": "+3500",  "implied_prob": 0.028},
+    "Purdue":        {"odds": "+3000",  "implied_prob": 0.032},
+    "Gonzaga":       {"odds": "+5000",  "implied_prob": 0.020},
+    "Vanderbilt":    {"odds": "+7500",  "implied_prob": 0.013},
+    "Virginia":      {"odds": "+7500",  "implied_prob": 0.013},
+    "Tennessee":     {"odds": "+12000", "implied_prob": 0.008},
+    "Kansas":        {"odds": "+5000",  "implied_prob": 0.020}
+  },
+
+  "first_round_spreads": {
+    "East": {
+      "Duke vs Siena":                    {"spread": -27.5, "our_margin_adj": 39.02, "our_spread_equiv": 27.3},
+      "Ohio State vs TCU":                {"spread": -2.5,  "our_margin_adj": 4.70,  "our_spread_equiv": 3.3},
+      "St. John's vs Northern Iowa":      {"spread": -10.0, "our_margin_adj": 14.07, "our_spread_equiv": 9.8},
+      "Kansas vs California Baptist":     {"spread": -14.0, "our_margin_adj": 18.41, "our_spread_equiv": 12.9},
+      "Louisville vs South Florida":      {"spread": -6.0,  "our_margin_adj": 5.03,  "our_spread_equiv": 3.5, "note": "Louisville -4.0 injury override (Brown Jr.)"},
+      "Michigan State vs North Dakota State": {"spread": -16.5, "our_margin_adj": 23.30, "our_spread_equiv": 16.3},
+      "UCLA vs UCF":                      {"spread": -6.0,  "our_margin_adj": 6.67,  "our_spread_equiv": 4.7},
+      "UConn vs Furman":                  {"spread": -20.5, "our_margin_adj": 29.81, "our_spread_equiv": 20.8}
+    },
+    "West": {
+      "Arizona vs LIU":                   {"spread": -29.5, "our_margin_adj": 41.56, "our_spread_equiv": 29.1},
+      "Villanova vs Utah State":          {"spread": 1.5,   "our_margin_adj": -0.90, "our_spread_equiv": -0.6, "note": "Utah State favored"},
+      "Wisconsin vs High Point":          {"spread": -11.5, "our_margin_adj": 14.99, "our_spread_equiv": 10.5},
+      "Arkansas vs Hawaii":               {"spread": -15.5, "our_margin_adj": 20.11, "our_spread_equiv": 14.1},
+      "BYU vs Texas":                     {"spread": -2.5,  "our_margin_adj": 0.58,  "our_spread_equiv": 0.4, "note": "BYU -3.5 injury override"},
+      "Gonzaga vs Kennesaw State":        {"spread": -19.5, "our_margin_adj": 23.43, "our_spread_equiv": 16.4, "note": "Gonzaga -4.0 injury override"},
+      "Miami (FL) vs Missouri":           {"spread": -1.5,  "our_margin_adj": 5.31,  "our_spread_equiv": 3.7},
+      "Purdue vs Queens (NC)":            {"spread": -23.5, "our_margin_adj": 32.62, "our_spread_equiv": 22.8}
+    },
+    "Midwest": {
+      "Michigan vs Howard":               {"spread": -31.5, "our_margin_adj": 37.50, "our_spread_equiv": 26.2, "note": "Michigan -3.0 injury override"},
+      "Georgia vs Saint Louis":           {"spread": -1.5,  "our_margin_adj": 2.18,  "our_spread_equiv": 1.5},
+      "Texas Tech vs Akron":              {"spread": -8.5,  "our_margin_adj": 5.90,  "our_spread_equiv": 4.1, "note": "Texas Tech -6.5 injury override"},
+      "Alabama vs Hofstra":               {"spread": -12.0, "our_margin_adj": 12.15, "our_spread_equiv": 8.5, "note": "Alabama -4.0 injury override"},
+      "Tennessee vs TBD":                 {"spread": -5.5,  "our_margin_adj": 7.91,  "our_spread_equiv": 5.5, "note": "FF4 winner TBD"},
+      "Virginia vs Wright State":         {"spread": -17.5, "our_margin_adj": 24.65, "our_spread_equiv": 17.2},
+      "Kentucky vs Santa Clara":          {"spread": -3.5,  "our_margin_adj": 1.97,  "our_spread_equiv": 1.4},
+      "Iowa State vs Tennessee State":    {"spread": -24.0, "our_margin_adj": 34.18, "our_spread_equiv": 23.9}
+    },
+    "South": {
+      "Florida vs TBD":                   {"spread": -28.5, "our_margin_adj": 44.16, "our_spread_equiv": 30.9, "note": "FF3 winner TBD"},
+      "Clemson vs Iowa":                  {"spread": 2.0,   "our_margin_adj": -5.73, "our_spread_equiv": -4.0, "note": "Iowa favored; Clemson -2.5 injury override"},
+      "Vanderbilt vs McNeese":            {"spread": -11.5, "our_margin_adj": 14.94, "our_spread_equiv": 10.4},
+      "Nebraska vs Troy":                 {"spread": -13.0, "our_margin_adj": 24.35, "our_spread_equiv": 17.0},
+      "North Carolina vs VCU":            {"spread": -2.5,  "our_margin_adj": -2.31, "our_spread_equiv": -1.6, "note": "UNC -6.0 injury override; we flip to VCU favored"},
+      "Illinois vs Idaho":                {"spread": -23.0, "our_margin_adj": 30.58, "our_spread_equiv": 21.4},
+      "Saint Mary's vs Texas A&M":        {"spread": -2.5,  "our_margin_adj": 4.52,  "our_spread_equiv": 3.2},
+      "Houston vs Penn":                  {"spread": -23.5, "our_margin_adj": 32.04, "our_spread_equiv": 22.4}
+    }
+  }
+}
