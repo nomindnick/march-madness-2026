@@ -1,20 +1,19 @@
-# How I Won the Office Bracket Pool (By a Lot)
+# March Madness 2026: AI-Assisted Bracket Portfolio Generator
 
-## The Short Version
+## Overview
 
-I built a Python system with Claude that generated 10 strategically differentiated
-March Madness brackets for my office pool (~30-60 people). The pool uses a **Points
-x Seed** scoring system that most participants didn't fully understand. Two of my
-brackets finished in the top 3.
-
-This wasn't luck. It was math, injury research, and portfolio theory applied to
-bracket construction.
+A Python system built with Claude that generates 10 strategically differentiated
+March Madness brackets for an office pool (~30-60 people). The pool uses a
+**Points x Seed** scoring system that creates unusual incentive structures. The
+system combines team efficiency data, late-breaking injury adjustments, Monte Carlo
+simulation, and portfolio-level diversification to maximize the probability that at
+least one bracket finishes in the top 3.
 
 ---
 
-## The Scoring System Everyone Misunderstood
+## The Scoring System
 
-Our pool's scoring system multiplies base points by the winning team's seed number
+The pool's scoring system multiplies base points by the winning team's seed number
 in every round:
 
 | Round         | Base Points | Formula          |
@@ -26,8 +25,7 @@ in every round:
 | Final Four    | 16          | 16 x seed        |
 | Championship  | 32          | 32 x seed        |
 
-This means a team's entire champion path is worth **seed x 63** points. The
-implications are extreme:
+A team's entire champion path is worth **seed x 63** points:
 
 | Champion Seed | Full Path Value | vs. 1-Seed |
 |---------------|-----------------|------------|
@@ -36,23 +34,19 @@ implications are extreme:
 | 3-seed        | 189 pts         | 3.0x       |
 | 4-seed        | 252 pts         | 4.0x       |
 
-Most people in the pool picked Duke or Arizona (both 1-seeds) to win it all
-because they were the best teams. Under standard ESPN scoring, that's correct.
-Under this system, it's leaving massive value on the table. A 3-seed champion
-earns **triple** the path points of a 1-seed champion. A correct 1-seed pick
-in Round 1 is worth 1 point. A correct 12-seed pick is worth 12 points.
-
-The scoring system is essentially a derivatives market where seed number is the
-multiplier — and most participants were pricing it wrong.
+This is very different from standard ESPN scoring. A 3-seed champion earns
+**triple** the path points of a 1-seed champion. A correct 12-seed pick in
+Round 1 is worth 12 points; a correct 1-seed pick is worth 1 point. The entire
+system is built around optimizing for this multiplier.
 
 ---
 
-## What I Built
+## How It Works
 
 ### The Probability Engine
 
-I scraped [KenPom](https://kenpom.com) efficiency ratings for all 68 tournament
-teams using Playwright browser automation. KenPom provides tempo-free,
+The system scrapes [KenPom](https://kenpom.com) efficiency ratings for all 68
+tournament teams using Playwright browser automation. KenPom provides tempo-free,
 opponent-adjusted metrics:
 
 - **Adjusted Offensive Efficiency (AdjO):** Points scored per 100 possessions
@@ -73,16 +67,13 @@ Sample outputs: Duke vs Siena (1v16) = 99.1%. A typical 8v9 game = ~50%. A typic
 5v12 = ~65-85% depending on the specific teams (not the historical seed average —
 the model uses actual team ratings).
 
-### The Injury Edge
+### Injury Overrides
 
-This is where the biggest alpha came from. Season-long KenPom ratings don't reflect
-late-breaking injuries. I built an injury override system that adjusts team ratings
-before any simulation:
+Season-long KenPom ratings don't reflect late-breaking injuries. The system includes
+an injury override config that adjusts team ratings before any simulation:
 
 - **Duke (1-seed, #1 overall):** Starting PG Caleb Foster broke his foot March 7.
   Center Ngongba questionable with foot soreness. Override: **-1.0 AdjEM**.
-  Duke was the most popular champion pick in the pool (29.2% of CBS entries).
-  Weakened but still heavily over-picked.
 
 - **Alabama (4-seed):** Top 3-point shooter arrested for felony marijuana
   possession March 16, suspended indefinitely. Down to 9 scholarship players.
@@ -96,7 +87,7 @@ before any simulation:
 - **Texas Tech (5-seed):** Star player (21.8 PPG) torn ACL in February. Override:
   **-6.5 AdjEM**.
 
-- **Gonzaga (3-seed):** This was the cleverest one. Star center Braden Huff was
+- **Gonzaga (3-seed):** Star center Braden Huff was
   out for opening weekend but potentially returning for the Sweet 16. The system
   used **conditional ratings**: -4.0 AdjEM for rounds 1-2 and only -1.0 from
   Sweet 16 onward. The model natively handles this through a `get_adj_em(team,
@@ -105,9 +96,9 @@ before any simulation:
 - **Michigan (1-seed):** Key guard L.J. Cason torn ACL. Override: **-3.0 AdjEM**.
   Still had the #1 defense in the country.
 
-I cross-validated these overrides against Vegas lines. My overrides were 2-4 points
-more aggressive than Vegas for injured teams — intentionally, because under x Seed
-scoring, pushing more upset picks is strategically correct.
+These overrides were cross-validated against Vegas lines. The overrides are 2-4
+points more aggressive than Vegas for injured teams — intentionally, because under
+x Seed scoring, pushing more upset picks is strategically desirable.
 
 ### The Expected Value Engine
 
@@ -221,18 +212,16 @@ points per bracket on the table for the safe ones.
 
 ### Design Philosophy
 
-In a pool of ~30-60 people, most submit 1-3 brackets with 1-seed champions. With
-10 brackets, I could cover significantly more of the outcome space. The goal wasn't
-to have every bracket independently win — it was to maximize the probability that
-**at least one bracket finishes in the top 3**.
+With 10 brackets, the system can cover significantly more of the outcome space
+than a single bracket. The goal isn't to have every bracket independently win —
+it's to maximize the probability that **at least one bracket finishes in the
+top 3**.
 
-I also collected expert brackets from ESPN (60-analyst poll), CBS Sports, Fox,
+Expert brackets were collected from ESPN (60-analyst poll), CBS Sports, Fox,
 SI, and Vegas odds. This identified:
-- **Consensus upset picks** that went into all 10 brackets
-- **High-disagreement games** where I varied picks across brackets
-- **CBS pool popularity** — Duke was picked by 29.2% of the public, Arizona by
-  21.9%. My contrarian champion picks had **zero** expert champion picks, meaning
-  maximum differentiation from the field
+- **Consensus upset picks** locked into all 10 brackets
+- **High-disagreement games** where picks are varied across brackets
+- **Pool popularity data** to measure differentiation from the field
 
 ### The 10 Brackets
 
@@ -306,63 +295,57 @@ tournaments, validate everything, write output files.
 
 ---
 
-## Key Architectural Decisions
+## Key Design Decisions
 
-1. **Injury overrides as first-class config, not afterthoughts.** A JSON file
-   where you adjust team AdjEM with a note explaining why. This is where the
-   biggest edge came from — the model incorporated information (March arrests,
-   broken feet, torn ACLs) that most pool participants and even some models
-   didn't fully account for.
+1. **Injury overrides as first-class config.** A JSON file where you adjust team
+   AdjEM with a note explaining why. Late-breaking injuries (March arrests, broken
+   feet, torn ACLs) meaningfully change team ceilings, and season-long stats
+   don't reflect them.
 
 2. **EV optimization, not probability optimization.** Every pick maximizes
    expected *points*, not expected *correctness*. These are very different
    objectives under x Seed scoring.
 
-3. **The simulator teaching us restraint.** Pure EV was too aggressive in later
+3. **The simulator teaching restraint.** Pure EV was too aggressive in later
    rounds. The 3-tier strategy (EV for Round 1, chalk for later rounds in safe
    brackets, full EV in contrarian brackets) was discovered empirically through
    10,000 simulations, not assumed upfront.
 
-4. **Portfolio thinking over single-bracket thinking.** I wasn't trying to build
-   1 perfect bracket. I was covering the outcome space so that whichever team
-   actually won, I had a bracket positioned for it with the right seed multiplier.
-   Most people in the pool picked 1 bracket with a 1-seed champion earning 63
-   path points. I had brackets ready for 2-seeds (126 pts), 3-seeds (189 pts),
-   and a 4-seed (252 pts).
+4. **Portfolio thinking over single-bracket thinking.** The system covers the
+   outcome space so that many possible tournament results produce a high-scoring
+   bracket — with 2-seeds (126 pts), 3-seeds (189 pts), and a 4-seed (252 pts)
+   as champions, not just 1-seeds (63 pts).
 
-5. **Pre-assigned champions with automated optimization.** I (the human) picked
-   which team each bracket would champion, based on strategic analysis of the
-   scoring system, injury landscape, and expert data. The algorithm handled the
-   tedious optimization of the other 62 games in each bracket. Strategic control
-   stayed with the human; computational grunt work went to the machine.
+5. **Human strategy, automated execution.** The human picks which team each
+   bracket champions, based on strategic analysis of the scoring system, injury
+   landscape, and expert data. The algorithm handles the tedious optimization of
+   the other 62 games per bracket.
 
 6. **Gonzaga's conditional rating.** One team had different strength levels
    depending on how deep they went (injured star potentially returning for
-   Sweet 16). The model handled this natively with round-dependent efficiency
+   Sweet 16). The model handles this natively with round-dependent efficiency
    ratings rather than forcing a single number.
 
 ---
 
-## Why It Worked
+## The Theory
 
-The edge came from three compounding advantages:
+The intended edge comes from three compounding factors:
 
-**Understanding the scoring system.** The x Seed multiplier makes this a
-fundamentally different game than standard bracket pools. Most participants
-picked as if it were ESPN scoring. Every pick I made was optimized for expected
-*points*, not expected *wins*.
+**Optimizing for the actual scoring system.** The x Seed multiplier makes this
+a fundamentally different game than standard bracket pools. Every pick is
+optimized for expected *points*, not expected *wins*.
 
-**Better information.** Late-breaking injuries (Duke's PG, Alabama's arrest,
-UNC's surgery) meaningfully changed team ceilings. I quantified these as AdjEM
-adjustments and fed them into the probability model. Most people knew about the
-injuries but didn't systematically adjust their picks.
+**Incorporating late-breaking information.** Injuries and suspensions that
+happened in the final week before the tournament meaningfully changed team
+ceilings. The system quantifies these as AdjEM adjustments and feeds them into
+the probability model.
 
 **Portfolio diversification.** With 10 brackets covering different champions
-across the 1-4 seed range, I had coverage for many possible tournament outcomes.
-If a 2-seed or 3-seed won it all, I had a bracket earning 2-3x the champion
-path points of anyone who picked a 1-seed. If chalk held, I had two 1-seed
-brackets. The downside was capped (entry fees for 10 brackets); the upside was
-multiplied.
+across the 1-4 seed range, the system has coverage for many possible tournament
+outcomes. If a 2-seed or 3-seed wins it all, a bracket is earning 2-3x the
+champion path points. If chalk holds, two 1-seed brackets are in play. The
+downside is capped (entry fees); the upside is multiplied.
 
 ---
 
@@ -373,9 +356,9 @@ multiplied.
 - **KenPom** — Team efficiency ratings (scraped via Playwright)
 - **Expert brackets** — ESPN 60-analyst poll, CBS Sports, Fox, SI, Vegas odds
 - **Python** — numpy for simulation, pandas for data handling
-- **~2 evenings of work** — The whole system was designed and built in roughly
-  6-10 hours across two evenings before the submission deadline
+- **~2 evenings of work** — Designed and built in roughly 6-10 hours across two
+  evenings before the submission deadline
 
 ---
 
-*Built March 2026. System designed and coded in Claude Code (Claude Opus 4.6).*
+*Built March 2026. System designed and coded with Claude Code (Claude Opus 4.6).*
